@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Name</title>
+    <link rel="shortcut icon" href="https://channelsix.pages.dev/cdn/branding/channel6/favicon.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://channelsix.pages.dev/cdn/branding/channel6/favicon.svg">
+    <link rel="manifest" href="template.webmanifest">
+
+    <link rel="stylesheet" href="https://apicenter.pages.dev/libraries/zirconium/css/zirconium.min.css"/>
+    <link rel="preconnect" href="https://fontapi.pages.dev">
+    <link rel="preconnect" href="https://fontstatic.pages.dev" crossorigin>
+    <link href="https://fontapi.pages.dev/css/global.css" rel="stylesheet">
+
+    <style> :root { --app-theme-color: #de1f29; --app-theme-font: sans-serif; --app-text-color: #ffffff; --tab-text-color: #ffffff; --tab-indicator-color: #ffffff; } html, body { font-family: var(--app-theme-font); height: 100%; margin: 0; } body { display: flex; flex-direction: column; } .logo-bar { background-color: var(--app-theme-color); color: var(--app-text-color); padding: 1rem; text-align: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0; } .tabs-container { background-color: var(--app-theme-color); flex-shrink: 0; } .tabs.tabs-transparent { background-color: transparent; display: flex; justify-content: space-between; } .tabs.tabs-transparent li.tab { flex: 1 1 0; text-align: center; max-width: none; } .tabs.tabs-transparent li.tab a { color: var(--tab-text-color); display: block; text-align: center; } .tabs .indicator { background-color: var(--tab-indicator-color) !important; height: 3px; } .app-content { flex: 1; overflow: hidden; } .tab-content { height: 100%; display: none; } .tab-content.active { display: block; } iframe { width: 100%; height: 100%; border: none; } </style>
+</head>
+<body>
+    <!-- Text Logo -->
+    <div class="logo-bar">App Name</div>
+    
+    <!-- Image Logo -->
+    <!-- <div class="logo-bar"><img src="" height="40px"></div> -->
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="#home" class="waves-effect waves-light">Homepage</a></li>
+                <li class="tab"><a href="#tab1" class="waves-effect waves-light">News</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Applet content -->
+    <div class="app-content">
+        <div id="home" class="tab-content">
+            <iframe src="https://example.com"></iframe>
+        </div>
+        <div id="tab1" class="tab-content">
+            <iframe src="https://example.com"></iframe>
+        </div>
+    </div>
+    <script src="https://apicenter.pages.dev/libraries/zirconium/js/zirconium.min.js"></script>
+    <script> document.addEventListener('DOMContentLoaded', function() { const elems = document.querySelectorAll('.tabs'); Z.Tabs.init(elems); const applets = true; const tabLinks = document.querySelectorAll('.tabs a'); const tabContents = document.querySelectorAll('.tab-content'); function activateTab(hash) { tabContents.forEach(tc => tc.classList.remove('active')); tabLinks.forEach(link => link.classList.remove('active')); const target = document.querySelector(hash); const link = document.querySelector(`.tabs a[href="${hash}"]`); if (target && link) { target.classList.add('active'); link.classList.add('active'); } } if (applets && window.location.hash) { activateTab(window.location.hash); } else { tabContents[0].classList.add('active'); tabLinks[0].classList.add('active'); } tabLinks.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); const hash = this.getAttribute('href'); activateTab(hash); if (applets) { history.replaceState(null, '', hash); } }); }); }); </script>
+</body>
+</html>
